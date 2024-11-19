@@ -62,7 +62,7 @@ public class RobotokTippelnekGui extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        mnuAlapallapot = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         mnuKilepes = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -80,6 +80,9 @@ public class RobotokTippelnekGui extends javax.swing.JFrame {
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
+            }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
             }
         });
 
@@ -360,8 +363,13 @@ public class RobotokTippelnekGui extends javax.swing.JFrame {
         jMenuItem3.setText("online help");
         jMenu1.add(jMenuItem3);
 
-        jMenuItem2.setText("Alapállapot");
-        jMenu1.add(jMenuItem2);
+        mnuAlapallapot.setText("Alapállapot");
+        mnuAlapallapot.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuAlapallapotActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mnuAlapallapot);
         jMenu1.add(jSeparator1);
 
         mnuKilepes.setText("Kilépés");
@@ -448,6 +456,32 @@ public class RobotokTippelnekGui extends javax.swing.JFrame {
         kilepes();
     }//GEN-LAST:event_formWindowClosing
 
+    private void mnuAlapallapotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAlapallapotActionPerformed
+        String alap = "ALAPÁLLAPOT";
+        String biztosuzenet ="Biztos vissza áll alapállapotba?";
+        int alap_gombok = JOptionPane.OK_CANCEL_OPTION;
+        int alap_valasz = JOptionPane.showConfirmDialog(rootPane, biztosuzenet, alap, alap_gombok);
+        if (alap_valasz == JOptionPane.OK_OPTION) {
+            kezdo_mentes();
+        }
+    }//GEN-LAST:event_mnuAlapallapotActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        kezdo_mentes();
+    }//GEN-LAST:event_formWindowOpened
+    private ArrayList kezdo_mentes(){
+        ArrayList eredeti_adatok_lista = new ArrayList();
+        String eredeti_txtVelSzam1 = txtVelSzam1.getText();
+        String eredeti_txtVelSzam2 = txtVelSzam2.getText();
+        eredeti_adatok_lista.add(eredeti_txtVelSzam1);
+        eredeti_adatok_lista.add(eredeti_txtVelSzam2);
+        return eredeti_adatok_lista;
+}
+    private void kezdo_mentes_visszaallitasa(eredeti_adatok_lista){
+        txtVelSzam1.setText(eredeti_txtVelSzam1);
+        
+    }
+    
     private void kilepes(){
         String cim = "KILÉPÉS";
         String uzenet = "Biztos kilép?";
@@ -511,7 +545,6 @@ public class RobotokTippelnekGui extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
@@ -537,6 +570,7 @@ public class RobotokTippelnekGui extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JMenuItem mnuAlapallapot;
     private javax.swing.JMenuItem mnuKilepes;
     private javax.swing.JSpinner numMax;
     private javax.swing.JSpinner numMin;
